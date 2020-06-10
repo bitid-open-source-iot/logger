@@ -1,0 +1,93 @@
+<mat-toolbar color="primary">
+    <div class="spacer">
+        filter data
+    </div>
+    
+    <button type="button" mat-icon-button (click)="close()">
+        <mat-icon>close</mat-icon>
+    </button>
+</mat-toolbar>
+
+<mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+
+<form [formGroup]="form" (ngSubmit)="!form.invalid && submit()">
+    <mat-form-field appearance="outline">
+        <mat-label>
+            sort
+        </mat-label>
+        
+        <mat-select name="sort" placeholder="sort" formControlName="sort">
+            <mat-option *ngFor="let item of sort" [value]="item.value">
+                {{ item.title }}
+            </mat-option>
+        </mat-select>
+    
+        <button matSuffix type="button" mat-icon-button (click)="reverse($event)">
+            <mat-icon>
+                {{ form.value.reverse ? 'arrow_upward' : 'arrow_downward'}}
+            </mat-icon>
+        </button>
+
+        <mat-error *ngIf="errors.sort">
+            {{ errors.sort }}
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>
+            limit
+        </mat-label>
+        
+        <input matInput min="1" max="100000" type="number" name="limit" placeholder="limit" formControlName="limit" required>
+    
+        <mat-error *ngIf="errors.limit">
+            {{ errors.limit }}
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>
+            loggers
+        </mat-label>
+        
+        <mat-select name="loggerId" placeholder="logger" formControlName="loggerId" multiple>
+            <mat-option *ngFor="let item of logger | orderBy : 'description'" [value]="item.loggerId">
+                {{ item.description }}
+            </mat-option>
+        </mat-select>
+
+        <mat-error *ngIf="errors.loggerId">
+            {{ errors.loggerId }}
+        </mat-error>
+    </mat-form-field>
+
+    <section>
+        <mat-form-field appearance="outline">
+            <mat-label>
+                from
+            </mat-label>
+
+            <input matInput type="date" name="from" placeholder="from" formControlName="from">
+
+            <mat-error *ngIf="errors.from">
+                {{ errors.from }}
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>
+                to
+            </mat-label>
+
+            <input matInput type="date" name="to" placeholder="to" formControlName="to">
+
+            <mat-error *ngIf="errors.to">
+                {{ errors.to }}
+            </mat-error>
+        </mat-form-field>
+    </section>
+
+    <button type="submit" mat-flat-button color="primary">
+        submit
+    </button>
+</form>

@@ -1,0 +1,27 @@
+{
+  "name": "logger",
+  "version": "1.0.0",
+  "description": "",
+  "main": "logger.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --reporter spec"
+  },
+  "dependencies": {
+    "chalk": "^4.0.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongodb": "^3.5.7",
+    "node-fetch": "^2.6.0",
+    "q": "^1.5.1",
+    "websocket": "^1.0.31"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "app/*"
+    ]
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-subset": "^1.6.0"
+  }
+}

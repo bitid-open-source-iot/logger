@@ -1,0 +1,26 @@
+form {
+    button {
+        flex:           1 auto;
+        height:         50px;
+        font-size:      16px;
+        font-weight:    400;
+        text-transform: uppercase;
+    }
+    mat-form-field mat-label {
+        text-transform: uppercase;
+    }
+    section {
+        display:        flex;
+        flex-direction: row;
+        mat-form-field {
+            flex:   1 calc(50% - 5px);
+            width:  calc(50% - 5px);
+        }
+        mat-form-field:last-child {
+            margin-left: 5px;
+        }
+        mat-form-field:first-child {
+            margin-right: 5px;
+        }
+    }
+}

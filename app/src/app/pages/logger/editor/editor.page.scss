@@ -1,0 +1,20 @@
+form {
+    width:  400px;
+    margin: auto;
+    section {
+        display:        flex;
+        flex-direction: row;
+        mat-form-field {
+            flex:   0 calc(50% - 5px);
+            width:  calc(50% - 5px);
+        }
+        mat-form-field:last-child {
+            margin-left: 10px;
+        }
+    }
+}
+@media screen and (max-width: 420px) {
+    form {
+        width:  calc(100% - 20px);
+    }
+};

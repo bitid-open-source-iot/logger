@@ -1,0 +1,47 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button class="menu-toggle" (click)="menu.toggle()">
+        <mat-icon>
+            menu
+        </mat-icon>
+    </button>
+
+    <div class="page-label spacer">
+        historical
+    </div>
+
+    <button mat-icon-button (click)="export()" *ngIf="table.data.length > 0">
+        <mat-icon>
+            get_app
+        </mat-icon>
+    </button>
+
+    <search placeholder="filter historical"></search>
+
+    <button mat-icon-button (click)="OpenFilter()">
+        <mat-icon>
+            filter_list
+        </mat-icon>
+    </button>
+</mat-toolbar>
+
+<mat-progress-bar mode="indeterminate" color="accent" *ngIf="loading"></mat-progress-bar>
+
+<div class="page-body">
+    <table mat-table [dataSource]="table" *ngIf="columns.length > 0">
+        <ng-container *ngFor="let column of columns" [matColumnDef]="column">
+            <th mat-header-cell *matHeaderCellDef text-uppercase>
+                {{ column }}
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{ element[column] }}
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columns; sticky: true;"></tr>
+        <tr mat-row *matRowDef="let row; columns: columns;"></tr>
+    </table>
+
+    <div class="no-result" *ngIf="!loading && table.data.length == 0">
+        no logs found
+    </div>
+</div>

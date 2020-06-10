@@ -1,0 +1,16 @@
+img {
+    width:          100px;
+    margin:         auto;
+    display:        block;
+    margin-top:     25px;
+    margin-bottom:  25px;
+}
+form {
+    width:  400px;
+    margin: auto;
+}
+@media screen and (max-width: 420px) {
+    form {
+        width: calc(100% - 20px);
+    }
+};

@@ -1,0 +1,93 @@
+<mat-toolbar color="primary">
+    <div class="page-label spacer">
+        {{ mode == 'add' ? 'add logger' : '' }}
+        {{ mode == 'copy' ? 'copy logger' : '' }}
+        {{ mode == 'update' ? 'update logger' : '' }}
+    </div>
+
+    <button mat-icon-button routerLink="/logger">
+        <mat-icon>
+            close
+        </mat-icon>
+    </button>
+</mat-toolbar>
+
+<mat-progress-bar mode="indeterminate" color="accent" *ngIf="loading"></mat-progress-bar>
+
+<form [formGroup]="form" (ngSubmit)="!form.invalid && submit()">
+    <mat-form-field appearance="outline">
+        <mat-label text-uppercase>
+            description
+        </mat-label>
+        
+        <input type="text" matInput name="description" placeholder="description" formControlName="description" required>
+
+        <mat-error *ngIf="errors.description">
+            {{ errors.description }}
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label text-uppercase>
+            sharing rules
+        </mat-label>
+        
+        <mat-select name="organizationOnly" placeholder="sharing rules" formControlName="organizationOnly" required>
+            <mat-option [value]="0">
+                Anyone Can Share
+            </mat-option>
+
+            <mat-option [value]="1">
+                In Organization Only
+            </mat-option>
+        </mat-select>
+
+        <mat-error *ngIf="errors.organizationOnly">
+            {{ errors.organizationOnly }}
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label text-uppercase>
+            whitelist
+        </mat-label>
+        
+        <mat-select name="whitelist_enabled" placeholder="whitelist" formControlName="whitelist_enabled" required>
+            <mat-option [value]="true">
+                Enabled
+            </mat-option>
+
+            <mat-option [value]="false">
+                Disabled
+            </mat-option>
+        </mat-select>
+
+        <mat-error *ngIf="errors.whitelist_enabled">
+            {{ errors.whitelist_enabled }}
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label text-uppercase>
+            hosts {{ form.value.whitelist_enabled ? '*' : '' }}
+        </mat-label>
+
+        <mat-chip-list #chipList aria-label="Fruit selection">
+            <mat-chip *ngFor="let host of hosts" [removable]="true" (removed)="remove(host)">
+                {{ host }}
+                
+                <mat-icon matChipRemove>cancel</mat-icon>
+            </mat-chip>
+          
+            <input type="url" placeholder="host..." formControlName="whitelist_hosts" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="keycodes" [matChipInputAddOnBlur]="true" (matChipInputTokenEnd)="add($event)">
+        </mat-chip-list>
+
+        <mat-error *ngIf="errors.whitelist_hosts">
+            {{ errors.whitelist_hosts }}
+        </mat-error>
+    </mat-form-field>
+
+    <button type="submit" mat-flat-button color="primary">
+        submit
+    </button>
+</form>
