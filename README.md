@@ -1,6 +1,6 @@
 # biTid Logger
 
-The **Logger Application/Service** manages users, clients(applications/services) and tokens of those users and clients. This service provides loggerentication and ensures that users can only interact with applications/services within their scope
+The **Logger Application/Service** manages users, clients(applications/services) and tokens of those users and clients. This service provides Authentication and ensures that users can only interact with applications/services within their scope
 
 ## Getting Started
 
