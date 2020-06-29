@@ -235,6 +235,30 @@ describe('Logger', function() {
     });
 });
 
+describe('Health Check', function() {
+    it('/', function(done) {
+        this.timeout(5000);
+
+        tools.api.healthcheck()
+        .then((result) => {
+            try {
+                result.should.have.property('uptime');
+                result.should.have.property('memory');
+                result.should.have.property('database');
+                done();
+            } catch(e) {
+                done(e);
+            };
+        }, (err) => {
+            try {
+                done(err);
+            } catch(e) {
+                done(e);
+            };
+        });
+    });
+});
+
 var tools = {
     api: {
         logger: {
@@ -388,6 +412,15 @@ var tools = {
 
                 return deferred.promise;
             }
+        },
+        healthcheck: async () => {
+            var deferred = Q.defer();
+            
+            const response = await tools.put('/health-check', {});
+
+            deferred.resolve(response);
+
+            return deferred.promise;
         }
     },
     put: async (url, payload) => {
