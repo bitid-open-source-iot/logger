@@ -12,7 +12,7 @@ var module = function() {
                     "code":         401,
                     "reason":       "General Logger Error",
                     "message":      "Logger Error",
-                    "locaction":    "bllLogger",
+                    "location":    "bllLogger",
                     "locationType": "body"
                 }]
             },

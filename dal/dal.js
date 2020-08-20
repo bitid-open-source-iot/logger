@@ -11,7 +11,7 @@ var module = function() {
 				'errors': [{
 					'reason': 		'Dal Logger Error',
 					'message': 		'Invalid Credentials',
-					'locaction': 	'dalLogger',
+					'location': 	'dalLogger',
 					'locationType': 'header'
 				}]
 			},

@@ -24,6 +24,7 @@ import { ToastService } from './services/toast/toast.service';
 import { ConfigService } from './services/config/config.service';
 import { LoggerService } from './services/logger/logger.service';
 import { AccountService } from './services/account/account.service';
+import { HistoryService } from './services/history/history.service';
 import { FormErrorService } from './services/form-error/form-error.service';
 import { LocalstorageService } from './services/localstorage/localstorage.service';
 
@@ -58,6 +59,7 @@ import { AppComponent } from './app.component';
         ToastService,
         LoggerService,
         ConfigService,
+        HistoryService,
         AccountService,
         FormErrorService,
         LocalstorageService
