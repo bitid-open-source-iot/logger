@@ -1,6 +1,6 @@
 {
-	"api": 		"http://127.0.0.1:9500",
-	"token": 	{},
-	"email": 	"xxx@xxx.co.za",
-	"appId":	"xxx"
+	"api": "http://127.0.0.1:9500",
+	"token": {},
+	"email": "xxx@xxx.co.za",
+	"appId": "xxx"
 }
