@@ -1,6 +1,7 @@
 const Q = require('q');
 const dal = require('./../dal/dal');
 const tools = require('./../lib/tools');
+const format = require('./../lib/format');
 const ErrorResponse = require('./../lib/error-response');
 
 var module = function () {
@@ -91,8 +92,8 @@ var module = function () {
                                 deferred.reject(err);
                             };
                         } else {
-                            var users = args.result.bitid.auth.users.map(user => user.email);
-                            if (users.includes(args.req.body.headers.email)) {
+                            var users = args.result.bitid.auth.users.map(user => format.email(user.email));
+                            if (users.includes(format.email(args.req.body.headers.email))) {
                                 deferred.resolve(args);
                             } else {
                                 var err = new ErrorResponse();

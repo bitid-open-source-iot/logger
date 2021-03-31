@@ -1,5 +1,6 @@
 const Q = require('q');
 const db = require('./../db/mongo');
+const format = require('./../lib/format');
 const ObjectId = require('mongodb').ObjectId;
 const ErrorResponse = require('./../lib/error-response');
 
@@ -55,7 +56,7 @@ var module = function () {
 
 			var params = {
 				'_id': ObjectId(args.req.body.loggerId),
-				'bitid.auth.users.email': args.req.body.header.email
+				'bitid.auth.users.email': format.email(args.req.body.header.email)
 			};
 
 			var filter = {};
@@ -98,7 +99,7 @@ var module = function () {
 			var deferred = Q.defer();
 
 			var params = {
-				'bitid.auth.users.email': args.req.body.header.email
+				'bitid.auth.users.email': format.email(args.req.body.header.email)
 			};
 
 			var filter = {};
@@ -178,11 +179,11 @@ var module = function () {
 						'role': {
 							$gte: 4
 						},
-						'email': args.req.body.header.email
+						'email': format.email(args.req.body.header.email)
 					}
 				},
 				'bitid.auth.users.email': {
-					$ne: args.req.body.email
+					$ne: format.email(args.req.body.email)
 				},
 				'_id': ObjectId(args.req.body.loggerId)
 			};
@@ -190,7 +191,7 @@ var module = function () {
 				$push: {
 					'bitid.auth.users': {
 						'role': args.req.body.role,
-						'email': args.req.body.email
+						'email': format.email(args.req.body.email)
 					}
 				}
 			};
@@ -254,7 +255,7 @@ var module = function () {
 							$gte: 2,
 							$lte: 5
 						},
-						'email': args.req.body.header.email
+						'email': format.email(args.req.body.header.email)
 					}
 				},
 				'_id': ObjectId(args.req.body.loggerId)
@@ -306,7 +307,7 @@ var module = function () {
 				'bitid.auth.users': {
 					$elemMatch: {
 						'role': 5,
-						'email': args.req.body.header.email
+						'email': format.email(args.req.body.header.email)
 					}
 				},
 				'_id': ObjectId(args.req.body.loggerId)
@@ -381,7 +382,7 @@ var module = function () {
 			var deferred = Q.defer();
 
 			var params = {
-				'bitid.auth.users.email': args.req.body.header.email
+				'bitid.auth.users.email': format.email(args.req.body.header.email)
 			};
 
 			if (typeof (args.req.body.loggerId) != 'undefined') {
@@ -491,7 +492,7 @@ var module = function () {
 			var params = {
 				'bitid.auth.users': {
 					$elemMatch: {
-						'email': args.req.body.header.email
+						'email': format.email(args.req.body.header.email)
 					}
 				},
 				'_id': ObjectId(args.req.body.loggerId)
@@ -502,7 +503,7 @@ var module = function () {
 				},
 				$pull: {
 					'bitid.auth.users': {
-						'email': args.req.body.email
+						'email': format.email(args.req.body.email)
 					}
 				}
 			};
@@ -536,7 +537,7 @@ var module = function () {
 						'role': {
 							$gte: 4
 						},
-						'email': args.req.body.header.email
+						'email': format.email(args.req.body.header.email)
 					}
 				},
 				'_id': ObjectId(args.req.body.loggerId)
@@ -553,7 +554,7 @@ var module = function () {
 					var params = {
 						'bitid.auth.users': {
 							$elemMatch: {
-								'email': args.req.body.email
+								'email': format.email(args.req.body.email)
 							}
 						},
 						'_id': ObjectId(args.req.body.loggerId)
