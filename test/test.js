@@ -1,14 +1,13 @@
-var chai = require('chai');
-var chaiSubset = require('chai-subset');
-chai.use(chaiSubset);
-
-var Q = require('q');
-var fetch = require('node-fetch');
-var assert = require('chai').assert;
-var expect = require('chai').expect;
-var should = require('chai').should();
-var config = require('./config.json');
-var WebSocketClient = require('websocket').client;
+const Q = require('q');
+const chai = require('chai');
+const fetch = require('node-fetch');
+const assert = require('chai').assert;
+const expect = require('chai').expect;
+const should = require('chai').should();
+const config = require('./config.json');
+const subset = require('chai-subset');
+chai.use(subset);
+const WebSocketClient = require('websocket').client;
 
 var socket = new WebSocketClient();
 var loggerId = null;
