@@ -115,7 +115,6 @@ try {
                 .then(portal.socket, null)
                 .then(portal.database, null)
                 .then(args => {
-                    console.log('Websocket Running on port: ', args.settings.websocket.port);
                     console.log('Webserver Running on port: ', args.settings.localwebserver.port);
                 }, err => {
                     console.log('Error Initializing: ', err);
