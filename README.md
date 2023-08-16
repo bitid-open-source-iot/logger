@@ -2,6 +2,14 @@
 
 The **Logger Application/Service** manages users, clients(applications/services) and tokens of those users and clients. This service provides Authentication and ensures that users can only interact with applications/services within their scope
 
+## Important
+
+You need to find the correct version of node for the angular version
+https://angular.io/guide/versions
+
+Once the devcontainer is running insall the needed version of angular globally
+npm i -g @angular/cli@1.2.3
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
