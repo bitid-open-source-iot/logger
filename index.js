@@ -74,6 +74,7 @@ try {
                 });
 
                 var server = http.createServer(app);
+                args.server = server;
                 server.listen(args.settings.localwebserver.port);
                 deferred.resolve(args);
             } catch (err) {
